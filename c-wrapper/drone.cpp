@@ -112,3 +112,14 @@ dgmpp_meters_per_second dgmpp_drone_get_velocity (dgmpp_type drone) {
     return get<Drone>(drone)->velocity() * 1s;
 }
 
+// ============================================================================
+// Apple Silicon compatible versions (out-parameter instead of struct return)
+// ============================================================================
+
+void dgmpp_drone_get_volley_r (dgmpp_type drone, dgmpp_damage_vector* out) {
+    if (out) *out = dgmpp_damage_vector_make(get<Drone>(drone)->volley());
+}
+
+void dgmpp_drone_get_dps_r (dgmpp_type drone, dgmpp_damage_per_second* out) {
+    if (out) *out = dgmpp_damage_per_second_make(get<Drone>(drone)->dps(hostile_target_make(dgmpp_hostile_target_default)));
+}

@@ -118,4 +118,25 @@ DGMPP_EXTERN dgmpp_percent					dgmpp_capacitor_get_stable_level	(dgmpp_capacitor
 DGMPP_EXTERN dgmpp_giga_joule_per_second	dgmpp_capacitor_get_use				(dgmpp_capacitor capacitor);
 DGMPP_EXTERN dgmpp_giga_joule_per_second	dgmpp_capacitor_get_recharge		(dgmpp_capacitor capacitor);
 
+// ============================================================================
+// Apple Silicon compatible versions (out-parameter instead of struct return)
+// These functions use pointers to avoid struct-by-value ABI issues on ARM64
+// ============================================================================
+
+DGMPP_EXTERN void dgmpp_ship_get_damage_pattern_r		(dgmpp_type ship, dgmpp_damage_vector* out);
+DGMPP_EXTERN void dgmpp_ship_get_resistances_r			(dgmpp_type ship, dgmpp_resistances* out);
+DGMPP_EXTERN void dgmpp_ship_get_tank_r					(dgmpp_type ship, dgmpp_tank* out);
+DGMPP_EXTERN void dgmpp_ship_get_effective_tank_r		(dgmpp_type ship, dgmpp_tank* out);
+DGMPP_EXTERN void dgmpp_ship_get_sustainable_tank_r		(dgmpp_type ship, dgmpp_tank* out);
+DGMPP_EXTERN void dgmpp_ship_get_effective_sustainable_tank_r	(dgmpp_type ship, dgmpp_tank* out);
+DGMPP_EXTERN void dgmpp_ship_get_hit_points_r			(dgmpp_type ship, dgmpp_hit_points* out);
+DGMPP_EXTERN void dgmpp_ship_get_effective_hit_points_r	(dgmpp_type ship, dgmpp_hit_points* out);
+
+DGMPP_EXTERN void dgmpp_ship_get_turrets_volley_r		(dgmpp_type ship, dgmpp_damage_vector* out);
+DGMPP_EXTERN void dgmpp_ship_get_launchers_volley_r		(dgmpp_type ship, dgmpp_damage_vector* out);
+DGMPP_EXTERN void dgmpp_ship_get_drones_volley_r		(dgmpp_type ship, dgmpp_damage_vector* out);
+DGMPP_EXTERN void dgmpp_ship_get_turrets_dps_r			(dgmpp_type ship, dgmpp_damage_per_second* out);
+DGMPP_EXTERN void dgmpp_ship_get_launchers_dps_r		(dgmpp_type ship, dgmpp_damage_per_second* out);
+DGMPP_EXTERN void dgmpp_ship_get_drones_dps_r			(dgmpp_type ship, dgmpp_damage_per_second* out);
+
 #endif /* ship_h */

@@ -36,5 +36,12 @@ DGMPP_EXTERN dgmpp_points					dgmpp_drone_get_accuracy_score	(dgmpp_type drone);
 DGMPP_EXTERN dgmpp_cubic_meter_per_second	dgmpp_drone_get_mining_yield	(dgmpp_type drone);
 DGMPP_EXTERN dgmpp_meters_per_second		dgmpp_drone_get_velocity		(dgmpp_type drone);
 
+// ============================================================================
+// Apple Silicon compatible versions (out-parameter instead of struct return)
+// These functions use pointers to avoid struct-by-value ABI issues on ARM64
+// ============================================================================
+
+DGMPP_EXTERN void dgmpp_drone_get_volley_r	(dgmpp_type drone, dgmpp_damage_vector* out);
+DGMPP_EXTERN void dgmpp_drone_get_dps_r		(dgmpp_type drone, dgmpp_damage_per_second* out);
 
 #endif /* drone_h */

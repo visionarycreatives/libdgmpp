@@ -426,3 +426,63 @@ dgmpp_giga_joule_per_second dgmpp_capacitor_get_use (dgmpp_capacitor capacitor) 
 dgmpp_giga_joule_per_second dgmpp_capacitor_get_recharge (dgmpp_capacitor capacitor) {
 	return reinterpret_cast<Capacitor*>(capacitor)->recharge() * 1s;
 }
+
+// ============================================================================
+// Apple Silicon compatible versions (out-parameter instead of struct return)
+// ============================================================================
+
+void dgmpp_ship_get_damage_pattern_r (dgmpp_type ship, dgmpp_damage_vector* out) {
+	if (out) *out = dgmpp_damage_vector_make(get<Ship>(ship)->damagePattern());
+}
+
+void dgmpp_ship_get_resistances_r (dgmpp_type ship, dgmpp_resistances* out) {
+	if (out) *out = dgmpp_resistances_make(get<Ship>(ship)->resistances());
+}
+
+void dgmpp_ship_get_tank_r (dgmpp_type ship, dgmpp_tank* out) {
+	if (out) *out = dgmpp_tank_make(get<Ship>(ship)->tank());
+}
+
+void dgmpp_ship_get_effective_tank_r (dgmpp_type ship, dgmpp_tank* out) {
+	if (out) *out = dgmpp_tank_make(get<Ship>(ship)->effectiveTank());
+}
+
+void dgmpp_ship_get_sustainable_tank_r (dgmpp_type ship, dgmpp_tank* out) {
+	if (out) *out = dgmpp_tank_make(get<Ship>(ship)->sustainableTank());
+}
+
+void dgmpp_ship_get_effective_sustainable_tank_r (dgmpp_type ship, dgmpp_tank* out) {
+	if (out) *out = dgmpp_tank_make(get<Ship>(ship)->effectiveSustainableTank());
+}
+
+void dgmpp_ship_get_hit_points_r (dgmpp_type ship, dgmpp_hit_points* out) {
+	if (out) *out = dgmpp_hit_points_make(get<Ship>(ship)->hitPoints());
+}
+
+void dgmpp_ship_get_effective_hit_points_r (dgmpp_type ship, dgmpp_hit_points* out) {
+	if (out) *out = dgmpp_hit_points_make(get<Ship>(ship)->effectiveHitPoints());
+}
+
+void dgmpp_ship_get_turrets_volley_r (dgmpp_type ship, dgmpp_damage_vector* out) {
+	if (out) *out = dgmpp_damage_vector_make(get<Ship>(ship)->turretsVolley());
+}
+
+void dgmpp_ship_get_launchers_volley_r (dgmpp_type ship, dgmpp_damage_vector* out) {
+	if (out) *out = dgmpp_damage_vector_make(get<Ship>(ship)->launchersVolley());
+}
+
+void dgmpp_ship_get_drones_volley_r (dgmpp_type ship, dgmpp_damage_vector* out) {
+	if (out) *out = dgmpp_damage_vector_make(get<Ship>(ship)->dronesVolley());
+}
+
+void dgmpp_ship_get_turrets_dps_r (dgmpp_type ship, dgmpp_damage_per_second* out) {
+	if (out) *out = dgmpp_damage_per_second_make(get<Ship>(ship)->turretsDPS(hostile_target_make(dgmpp_hostile_target_default)));
+}
+
+void dgmpp_ship_get_launchers_dps_r (dgmpp_type ship, dgmpp_damage_per_second* out) {
+	if (out) *out = dgmpp_damage_per_second_make(get<Ship>(ship)->launchersDPS(hostile_target_make(dgmpp_hostile_target_default)));
+}
+
+void dgmpp_ship_get_drones_dps_r (dgmpp_type ship, dgmpp_damage_per_second* out) {
+	if (out) *out = dgmpp_damage_per_second_make(get<Ship>(ship)->dronesDPS(hostile_target_make(dgmpp_hostile_target_default)));
+}
